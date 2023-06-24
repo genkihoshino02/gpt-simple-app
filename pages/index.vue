@@ -1,14 +1,43 @@
 <template>
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
-                <textarea v-model="prompt" type="text" rows="5" class="flex-grow rounded-3xl bg-slate-50 mr-5 p-2 sm:pr-16 text-2xl font-medium title-font text-gray-900"/>
-                <button @click="handleClick" class="flex-shrink-0 border-2 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0">ASK</button>
-            </div>
-        </div>
+    <section class="body-font">
+        <div class="w-screen pt-5">
+          <div class="container mx-auto flex justify-center items-center md:p-0">
+              <div class="border border-gray-300 p-6 grid grid-cols-1 gap-6 bg-white shadow-lg rounded-lg">
+                  <textarea v-model="prompt" type="text" rows="5" class="flex-grow rounded-3xl bg-slate-50 p-2 sm:pr-16 text-2xl font-medium title-font text-gray-900"/>
+                  <div class="flex flex-col md:flex-row">
+                      <div class="">
+                          <select class="border p-2 rounded">
+                              <option>GPT-3.5</option>
+                              <option>GPT-4</option>
+                          </select>
+                      </div>
+                      <div class="pt-6 md:pt-0 md:pl-6">
+                          <select class="border p-2 rounded">
+                              <option>Expert</option>
+                              <option>Teacher</option>
+                              <option>Generalist</option>
+                          </select>
+                      </div>
+                      <div class="pt-6 md:pt-0 md:pl-6">
+                          <select class="border p-2 rounded">
+                              <option>Generate code</option>
+                              <option>Bug</option>
+                              <option>Debug</option>
+                              <option>Refactor</option>
+                              <option>Advice</option>
+                              <option>Review</option>
+                              <option>Add Comment</option>
+                              <option>Name Variable or Function</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="flex justify-center"><button @click="handleClick" class="p-2 border w-1/4 rounded-md bg-gray-800 text-white">Search</button></div>
+              </div>
+          </div>
+      </div>
     </section>
     <section class="text-gray-600 body-font">
-        <div class="container px-5 mx-auto">
+        <div class="container px-5 pt-4 mx-auto">
           <div class="flex flex-wrap -m-4">
             <div v-for="item in items" :key="item.prompt" class="xl:w-1/3 md:w-1/2 p-4">
               <div class="border border-gray-200 p-6 rounded-lg">
@@ -45,11 +74,11 @@ export default defineComponent({
         this.items.push({
             prompt: this.prompt,
             response: this.generatedText
-        })
+        });
 
-        // 初期化
-        this.prompt = ''
-        this.generatedText = ''
+        // Initialization
+        this.prompt = '';
+        this.generatedText = '';
     },
   },
 });
